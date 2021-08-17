@@ -19,9 +19,7 @@ class JoblyApi {
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
-    const params = (method === "get")
-        ? data
-        : {};
+    const params = method === "get" ? data : {};
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
@@ -34,15 +32,15 @@ class JoblyApi {
 
   // Individual API routes
 
-/*********************************************************** Auth */
+  /*********************************************************** Auth */
   /** Authorizes user. */
   // WIP
-  static async auth(data={}) {
+  static async auth(data = {}) {
     let res = await this.request(`auth/token`);
     return res.token;
   }
 
-/*********************************************************** Companies */
+  /*********************************************************** Companies */
 
   /** getAllCompanies: Get all companies from API with optional name filter.
    *    Accepts: searchTerm = "search" (optional)
@@ -55,8 +53,7 @@ class JoblyApi {
     return res.companies;
   }
 
-
-  /** getCompany: Get details on a company by handle. 
+  /** getCompany: Get details on a company by handle.
    *    Accepts: company handle as a string (e.g. "baker-santos")
    *    returns: { handle, name, description, numEmployees, logoUrl, jobs }
    *        where jobs is [{ id, title, salary, equity }, ...]
@@ -67,8 +64,7 @@ class JoblyApi {
     return res.company;
   }
 
-/*********************************************************** Jobs */
-
+  /*********************************************************** Jobs */
 
   /** Get all jobs. */
   // WIP
@@ -76,14 +72,12 @@ class JoblyApi {
     let res = await this.request(`jobs`);
     return res.jobs;
   }
-
-
 }
 
 // for now, put token ("testuser" / "password" on class)
-JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
-
+JoblyApi.token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+  "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+  "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
 export default JoblyApi;

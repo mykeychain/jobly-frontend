@@ -7,7 +7,7 @@ import SearchForm from "./SearchForm";
  *    state:
  *      - companies: [ { handle, name, description, numEmployees, logoUrl }, ...]
  *      - isLoading: boolean
- * 
+ *
  *    App -> Companies -> { SearchForm, CompanyList }
  */
 
@@ -29,10 +29,8 @@ function Companies() {
 
   // gets companies that match search term, toggles isLoading
   async function handleSearch(searchTerm) {
-    setIsLoading(true);
-    const companies = await JoblyApi.getAllCompanies();
+    const companies = await JoblyApi.getAllCompanies(searchTerm);
     setCompanies(companies);
-    setIsLoading(false);
   }
 
   if (isLoading) {
