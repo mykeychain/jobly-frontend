@@ -32,6 +32,7 @@ function Routes() {
         <Route exact path="/profile">
           <Profile />
         </Route>
+        {/* TODO: add redirect */}
       </Switch>
     </div>
   );

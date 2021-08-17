@@ -1,7 +1,12 @@
+import CompanyDetail from "./CompanyDetail";
+
 function CompanyFinder() {
-  <div className="CompanyFinder">
-    <h1>CompanyFinder</h1>
-  </div>;
+  return (
+    <div className="CompanyFinder">
+      <h1>CompanyFinder</h1>
+      <CompanyDetail />
+    </div>
+  )
 }
 
 export default CompanyFinder;

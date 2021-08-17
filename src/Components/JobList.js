@@ -1,7 +1,12 @@
+import JobCard from "./JobCard";
+
 function JobList() {
-  <div className="JobList">
-    <h1>JobList</h1>
-  </div>;
+  return (
+    <div className="JobList">
+      <h1>JobList</h1>
+      <JobCard />
+    </div>
+    )
 }
 
 export default JobList;

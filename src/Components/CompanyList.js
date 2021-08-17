@@ -1,7 +1,12 @@
+import CompanyCard from "./CompanyCard";
+
 function CompanyList() {
-  <div className="CompanyList">
-    <h1>CompanyList</h1>
-  </div>;
+  return (
+    <div className="CompanyList">
+      <h1>CompanyList</h1>
+      <CompanyCard />
+    </div> 
+  )
 }
 
 export default CompanyList;

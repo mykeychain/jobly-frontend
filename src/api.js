@@ -36,7 +36,7 @@ class JoblyApi {
 
 /*********************************************************** Auth */
   /** Authorizes user. */
-
+  // WIP
   static async auth(data={}) {
     let res = await this.request(`auth/token`);
     return res.token;
@@ -45,7 +45,7 @@ class JoblyApi {
 /*********************************************************** Companies */
 
   /** Get all companies. */
-
+  // WIP
   static async getAllCompanies() {
     let res = await this.request(`companies`);
     return res.companies;
@@ -63,7 +63,7 @@ class JoblyApi {
 
 
   /** Get all jobs. */
-
+  // WIP
   static async getAllJobs() {
     let res = await this.request(`jobs`);
     return res.jobs;

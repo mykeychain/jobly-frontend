@@ -1,7 +1,12 @@
+import JobList from "./JobList";
+
 function CompanyDetail() {
-  <div className="CompanyDetail">
-    <h1>CompanyDetail</h1>
-  </div>;
+  return (
+    <div className="CompanyDetail">
+      <h1>CompanyDetail</h1>
+      <JobList />
+    </div>
+  )
 }
 
 export default CompanyDetail;
