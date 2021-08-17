@@ -44,15 +44,23 @@ class JoblyApi {
 
 /*********************************************************** Companies */
 
-  /** Get all companies. */
-  // WIP
-  static async getAllCompanies() {
-    let res = await this.request(`companies`);
+  /** getAllCompanies: Get all companies from API with optional name filter.
+   *    Accepts: searchTerm = "search" (optional)
+   *    Returns: [ { handle, name, description, numEmployees, logoUrl }, ...]
+   */
+
+  static async getAllCompanies(searchTerm) {
+    const queryString = searchTerm ? `?name=${searchTerm}` : "";
+    let res = await this.request(`companies${queryString}`);
     return res.companies;
   }
 
 
-  /** Get details on a company by handle. */
+  /** getCompany: Get details on a company by handle. 
+   *    Accepts: company handle as a string (e.g. "baker-santos")
+   *    returns: { handle, name, description, numEmployees, logoUrl, jobs }
+   *        where jobs is [{ id, title, salary, equity }, ...]
+   */
 
   static async getCompany(handle) {
     let res = await this.request(`companies/${handle}`);
@@ -76,3 +84,6 @@ class JoblyApi {
 JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
     "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
     "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+
+
+export default JoblyApi;
