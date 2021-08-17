@@ -3,12 +3,21 @@ import JoblyApi from "../api";
 import CompanyList from "./CompanyList";
 import SearchForm from "./SearchForm";
 
+/** Companies: renders search form and company list
+ *    state:
+ *      - companies: [ { handle, name, description, numEmployees, logoUrl }, ...]
+ *      - isLoading: boolean
+ * 
+ *    App -> Companies -> { SearchForm, CompanyList }
+ */
+
 function Companies() {
   console.debug("Companies component rendered.");
 
   const [companies, setCompanies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // gets all companies on mount
   useEffect(function getInitialCompanies() {
     const _getInitialCompanies = async function () {
       const companies = await JoblyApi.getAllCompanies();
@@ -18,6 +27,7 @@ function Companies() {
     setIsLoading(false);
   }, []);
 
+  // gets companies that match search term, toggles isLoading
   async function handleSearch(searchTerm) {
     setIsLoading(true);
     const companies = await JoblyApi.getAllCompanies();
