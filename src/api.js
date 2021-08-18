@@ -40,6 +40,11 @@ class JoblyApi {
     return res.token;
   }
 
+  static async signUp(newUser) {
+    let res = await this.request(`auth/register`, newUser, "post");
+    return res.token;
+  }
+
   /*********************************************************** Companies */
 
   /** getAllCompanies: Get all companies from API with optional name filter.
@@ -66,7 +71,7 @@ class JoblyApi {
 
   /*********************************************************** Jobs */
 
-  /** getAllJobs: Get all jobs from API with optional title filter. 
+  /** getAllJobs: Get all jobs from API with optional title filter.
    *    Accepts: searchTerm = "search" (optional)
    *    Returns: [ { id, title, salary, equity, companyHandle, companyName }, ...]
    */
@@ -76,7 +81,6 @@ class JoblyApi {
     return res.jobs;
   }
 }
-
 // for now, put token ("testuser" / "password" on class)
 JoblyApi.token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +

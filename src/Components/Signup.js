@@ -6,7 +6,7 @@ function Signup() {
       <h1>Signup</h1>
       <UserForm />
     </div>
-  )
+  );
 }
 
 export default Signup;

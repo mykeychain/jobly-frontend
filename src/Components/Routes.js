@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Companies from "./Companies";
 import CompanyFinder from "./CompanyFinder";
 import Homepage from "./Homepage";
@@ -32,7 +32,7 @@ function Routes() {
         <Route exact path="/profile">
           <Profile />
         </Route>
-        {/* TODO: add redirect */}
+        <Redirect to="/" />
       </Switch>
     </div>
   );
