@@ -1,8 +1,8 @@
 import { useState } from "react";
 
+/** TODO: DOCSTRING */
 function SearchForm({ search }) {
   const [formData, setFormData] = useState("");
-  console.log(formData);
 
   function handleChange(evt) {
     const userInput = evt.target.value;
@@ -11,7 +11,7 @@ function SearchForm({ search }) {
 
   function handleSearch(evt) {
     evt.preventDefault();
-    search(formData);
+    search(formData.trim());
   }
 
   return (

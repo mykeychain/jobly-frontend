@@ -13,7 +13,7 @@ function CompanyCard({company}) {
     <Link className="CompanyCard" to={`/companies/${company.handle}`}>
       <div className="CompanyCard-div">
         <h5>{company.name}</h5>
-        <img src={company.logoUrl} alt={company.logoUrl} />
+        <img src={company.logoUrl} alt={company.name} />
         <small>{company.description}</small>
       </div>
     </Link>

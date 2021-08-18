@@ -66,10 +66,13 @@ class JoblyApi {
 
   /*********************************************************** Jobs */
 
-  /** Get all jobs. */
-  // WIP
-  static async getAllJobs() {
-    let res = await this.request(`jobs`);
+  /** getAllJobs: Get all jobs from API with optional title filter. 
+   *    Accepts: searchTerm = "search" (optional)
+   *    Returns: [ { id, title, salary, equity, companyHandle, companyName }, ...]
+   */
+  static async getAllJobs(searchTerm) {
+    const queryString = searchTerm ? `?title=${searchTerm}` : "";
+    let res = await this.request(`jobs${queryString}`);
     return res.jobs;
   }
 }

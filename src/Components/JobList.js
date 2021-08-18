@@ -1,12 +1,20 @@
 import JobCard from "./JobCard";
 
-function JobList() {
+/** JobList: renders list of job cards
+ *    props:
+ *      - jobs: [ { id, title, salary, equity, companyHandle, companyName }, ...]
+ *
+ *    Jobs -> JobList -> JobCard
+ */
+
+function JobList({ jobs }) {
   return (
     <div className="JobList">
-      <h1>JobList</h1>
-      <JobCard />
+      {jobs.map((job) => (
+        <JobCard job={job} key={job.id} />
+      ))}
     </div>
-    )
+  );
 }
 
 export default JobList;

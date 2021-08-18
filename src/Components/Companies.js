@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import JoblyApi from "../api";
 import CompanyList from "./CompanyList";
+import Loading from "./Loading";
 import SearchForm from "./SearchForm";
 
 /** Companies: renders search form and company list
@@ -20,14 +21,15 @@ function Companies() {
   // gets all companies on mount
   useEffect(function getInitialCompanies() {
     const _getInitialCompanies = async function () {
+      // can call handleSearch here to reduce duplicated code
       const companies = await JoblyApi.getAllCompanies();
       setCompanies(companies);
+      setIsLoading(false);
     };
     _getInitialCompanies();
-    setIsLoading(false);
   }, []);
 
-  // gets companies that match search term, toggles isLoading
+  // gets companies that match search term
   async function handleSearch(searchTerm) {
     const companies = await JoblyApi.getAllCompanies(searchTerm);
     setCompanies(companies);
@@ -35,9 +37,7 @@ function Companies() {
 
   if (isLoading) {
     return (
-      <div className="Companies">
-        <p>...loading</p>
-      </div>
+      <Loading />
     );
   }
 

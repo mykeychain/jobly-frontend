@@ -7,6 +7,7 @@ import "./CompanyList.css";
  *
  *    Companies -> CompanyList -> CompanyCard
  */
+
 function CompanyList({ companies }) {
   return (
     <div className="CompanyList">
