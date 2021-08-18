@@ -1,14 +1,25 @@
 import { useState } from "react";
 
-/** TODO: DOCSTRING */
+/** SearchForm: 
+ *    props:
+ *      - search: parent function
+ * 
+ *    state:
+ *      - formData: "search term"
+ * 
+ *    {Companies, Jobs} -> SearchForm
+ * 
+ */
 function SearchForm({ search }) {
   const [formData, setFormData] = useState("");
 
+  // handleChange: updates state with each key press
   function handleChange(evt) {
     const userInput = evt.target.value;
     setFormData(userInput);
   }
 
+  // handleSearch: calls parent function on form submission
   function handleSearch(evt) {
     evt.preventDefault();
     search(formData.trim());
