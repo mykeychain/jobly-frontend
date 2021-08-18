@@ -1,11 +1,21 @@
 import UserForm from "./UserForm";
 
-function Login() {
+/** Login: Renders Login form and handles login.
+ *    props: 
+ *      - login: parent function
+ *    
+ *    Routes -> Login -> UserForm
+ */
+function Login({login}) {
+  const fields = ["username", "password"];
+
+  // handleLogin: calls parent function
+  function handleLogin(loginCredentials) {
+    login(loginCredentials);
+  }
+
   return (
-    <div className="Login">
-      <h1>Login</h1>
-      <UserForm />
-    </div>
+    <UserForm submit={handleLogin} fields={fields}/>
   )
 }
 

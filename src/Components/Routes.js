@@ -7,7 +7,7 @@ import Profile from "./Profile";
 import Signup from "./Signup";
 import Jobs from "./Jobs";
 
-function Routes() {
+function Routes({signUp, login}) {
   return (
     <div className="Routes">
       <Switch>
@@ -15,10 +15,10 @@ function Routes() {
           <Homepage />
         </Route>
         <Route exact path="/login">
-          <Login />
+          <Login login={login}/>
         </Route>
         <Route exact path="/signup">
-          <Signup />
+          <Signup signUp={signUp}/>
         </Route>
         <Route exact path="/companies">
           <Companies />

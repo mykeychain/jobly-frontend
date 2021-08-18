@@ -1,11 +1,21 @@
 import UserForm from "./UserForm";
 
-function Signup() {
+/** Signup: Renders Login form and handles login.
+ *    props: 
+ *      - signUp: parent function
+ *    
+ *    Routes -> Signup -> UserForm
+ */
+function Signup({signUp}) {
+  const fields = ["username", "password", "firstName", "lastName", "email"];
+
+  // handleSignUp: calls parent function
+  function handleSignUp(newUser) {
+    signUp(newUser);
+  }
+
   return (
-    <div className="Signup">
-      <h1>Signup</h1>
-      <UserForm />
-    </div>
+    <UserForm submit={handleSignUp} fields={fields}/>
   );
 }
 

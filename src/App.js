@@ -12,15 +12,33 @@ function App() {
   async function signUp(newUser) {
     const token = await JoblyApi.signUp(newUser);
     setToken(token);
+    JoblyApi.token = token;
     setCurrentUser(jsonwebtoken.decode(token));
   }
 
-  async function login(user) {}
+  async function login(loginCredentials) {
+    const token = await JoblyApi.login(loginCredentials);
+    setToken(token);
+    JoblyApi.token = token;
+    setCurrentUser(jsonwebtoken.decode(token));
+  }
+
+  function logout() {
+    setToken("");
+    JoblyApi.token = "";
+    setCurrentUser({});
+  }
 
   return (
     <div className="App">
-      <Navigation />
-      <Routes />
+      <Navigation 
+        signUp={signUp}
+        login={login}
+        logout={logout}/>
+      <Routes 
+        signUp={signUp}
+        login={login}
+        logout={logout}/>
     </div>
   );
 }
