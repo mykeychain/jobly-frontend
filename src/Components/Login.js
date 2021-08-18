@@ -1,4 +1,3 @@
-import { Redirect } from "react-router-dom";
 import UserForm from "./UserForm";
 
 /** Login: Renders Login form and handles login.

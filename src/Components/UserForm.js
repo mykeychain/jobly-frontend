@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 
 /** UserForm: controlled component that renders form and calls parent function
  *  on submit.

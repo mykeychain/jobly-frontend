@@ -1,9 +1,21 @@
+import { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
+import UserContext from "../Context/UserContext";
 import "./Navigation.css";
 
+/** Navigation: renders navigation bar
+ *    props:
+ *      - logout: parent function
+ * 
+ *    context:
+ *      - UserContext Provider: {currentUser, setCurrentUser}
+ *          where currentUser = { username, isAdmin, iat }
+ * 
+ *    App -> Navigation
+ */
+
 function Navigation({ logout }) {
-  //TODO: Change after context added
-  const currentUser = false;
+  const {currentUser} = useContext(UserContext);
 
   if (!currentUser.username) {
     return (

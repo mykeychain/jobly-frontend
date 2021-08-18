@@ -1,10 +1,23 @@
 import { useState } from "react";
+import jsonwebtoken from "jsonwebtoken";
+import { useHistory } from "react-router-dom";
 import JoblyApi from "./api";
 import "./App.css";
 import Navigation from "./Components/Navigation";
 import Routes from "./Components/Routes";
-import jsonwebtoken from "jsonwebtoken";
-import { useHistory } from "react-router-dom";
+import UserContext from "./Context/UserContext";
+
+/** App: has everything
+ *    states: 
+ *      - token: "token"
+ *      - currentUser: { username, isAdmin, iat }
+ * 
+ *    context:
+ *      - UserContext Provider: {currentUser, setCurrentUser}
+ *          where currentUser = { username, isAdmin, iat }
+ * 
+ *    App -> { Navigation, Routes }
+ */
 
 function App() {
   const [token, setToken] = useState("");
@@ -37,8 +50,10 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation logout={logout} />
-      <Routes signUp={signUp} login={login} />
+      <UserContext.Provider value={{currentUser, setCurrentUser}} >
+        <Navigation logout={logout} />
+        <Routes signUp={signUp} login={login} />
+      </UserContext.Provider>
     </div>
   );
 }
