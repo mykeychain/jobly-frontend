@@ -6,16 +6,16 @@ import "./Navigation.css";
 /** Navigation: renders navigation bar
  *    props:
  *      - logout: parent function
- * 
+ *
  *    context:
- *      - UserContext Provider: {currentUser, setCurrentUser}
- *          where currentUser = { username, isAdmin, iat }
- * 
+ *       - UserContext: {currentUser, setCurrentUser}
+ *          where currentUser = { username, firstName, lastName, isAdmin, applications }
+ *
  *    App -> Navigation
  */
 
 function Navigation({ logout }) {
-  const {currentUser} = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   if (!currentUser.username) {
     return (

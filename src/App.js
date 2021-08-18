@@ -8,14 +8,14 @@ import Routes from "./Components/Routes";
 import UserContext from "./Context/UserContext";
 
 /** App: has everything
- *    states: 
+ *    states:
  *      - token: "token"
  *      - currentUser: { username, isAdmin, iat }
- * 
+ *
  *    context:
  *      - UserContext Provider: {currentUser, setCurrentUser}
- *          where currentUser = { username, isAdmin, iat }
- * 
+ *          where currentUser = { username, firstName, lastName, isAdmin, applications }
+ *
  *    App -> { Navigation, Routes }
  */
 
@@ -35,10 +35,12 @@ function App() {
     _handleLogin(token);
   }
 
-  function _handleLogin(token) {
+  async function _handleLogin(token) {
     setToken(token);
     JoblyApi.token = token;
-    setCurrentUser(jsonwebtoken.decode(token));
+    const { username } = jsonwebtoken.decode(token);
+    const user = await JoblyApi.getUser(username);
+    setCurrentUser(user);
     history.push("/");
   }
 
@@ -50,7 +52,7 @@ function App() {
 
   return (
     <div className="App">
-      <UserContext.Provider value={{currentUser, setCurrentUser}} >
+      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <Navigation logout={logout} />
         <Routes signUp={signUp} login={login} />
       </UserContext.Provider>
