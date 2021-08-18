@@ -1,26 +1,27 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 /** UserForm: controlled component that renders form and calls parent function
  *  on submit.
  *    props:
  *      - submit: parent function
  *      - fields: ["username", "password", ...]
- * 
+ *
  *    states:
  *      - formData: { username, password, ... }
- * 
+ *
  *    { Login, Signup } -> UserForm
  */
-function UserForm({submit, fields}) {
+function UserForm({ submit, fields }) {
   const [formData, setFormData] = useState({});
 
   // handleChange: updates state on change
   function handleChange(evt) {
-    const {name, value} = evt.target;
+    const { name, value } = evt.target;
 
-    setFormData(oldData => ({
+    setFormData((oldData) => ({
       ...oldData,
-      [name]: value
+      [name]: value,
     }));
   }
 
@@ -31,16 +32,17 @@ function UserForm({submit, fields}) {
   }
 
   return (
-    <form className = "UserForm"
-      onSubmit={handleSubmit}>
-      {fields.map(field => <input 
-                            type={field === "password" ? field : "text"}
-                            name={field}
-                            placeholder={field}
-                            key={field}
-                            value={formData.field}
-                            onChange={handleChange}
-                            ></input>)}
+    <form className="UserForm" onSubmit={handleSubmit}>
+      {fields.map((field) => (
+        <input
+          type={field === "password" ? field : "text"}
+          name={field}
+          placeholder={field}
+          key={field}
+          value={formData.field}
+          onChange={handleChange}
+        ></input>
+      ))}
       <button>Submit</button>
     </form>
   );

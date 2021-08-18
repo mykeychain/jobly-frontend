@@ -1,12 +1,13 @@
+import { Redirect } from "react-router-dom";
 import UserForm from "./UserForm";
 
 /** Login: Renders Login form and handles login.
- *    props: 
+ *    props:
  *      - login: parent function
- *    
+ *
  *    Routes -> Login -> UserForm
  */
-function Login({login}) {
+function Login({ login }) {
   const fields = ["username", "password"];
 
   // handleLogin: calls parent function
@@ -14,9 +15,7 @@ function Login({login}) {
     login(loginCredentials);
   }
 
-  return (
-    <UserForm submit={handleLogin} fields={fields}/>
-  )
+  return <UserForm submit={handleLogin} fields={fields} />;
 }
 
 export default Login;
