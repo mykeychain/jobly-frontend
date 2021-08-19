@@ -1,17 +1,18 @@
-// import { useContext } from "react";
-// import UserContext from "../Context/UserContext";
 // import UserForm from "./UserForm";
 
 /** TODO: docstring */
 
-function Profile() {
-  // const {currentUser} = useContext(UserContext);
+function Profile({currentUser}) {
+
+  // const fields = ["firstName", "lastName", ""]
 
   return (
     <div className="Profile">
       <h1>Profile</h1>
-      {/* TODO: bring back userform */}
-      {/* <UserForm /> */}
+      {/* <div className="Profile-form">
+        <p>{currentUser.username}</p>
+        <UserForm fields={fields} />
+      </div> */}
     </div>
   );
 }

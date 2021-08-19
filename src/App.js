@@ -51,10 +51,11 @@ function App() {
           const { username } = jsonwebtoken.decode(token);
           const user = await JoblyApi.getUser(username);
           setCurrentUser(user);
-          setIsAuthenticating(false);
         } catch {
           console.error("INVALID TOKEN RECEIVED.");
           logout();
+        } finally {
+          setIsAuthenticating(false);
         }
       }
 
