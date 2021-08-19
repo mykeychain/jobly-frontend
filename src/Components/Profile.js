@@ -1,11 +1,11 @@
-import { useContext } from "react";
-import UserContext from "../Context/UserContext";
-import UserForm from "./UserForm";
+// import { useContext } from "react";
+// import UserContext from "../Context/UserContext";
+// import UserForm from "./UserForm";
 
 /** TODO: docstring */
 
 function Profile() {
-  const {currentUser} = useContext(UserContext);
+  // const {currentUser} = useContext(UserContext);
 
   return (
     <div className="Profile">

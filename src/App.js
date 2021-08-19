@@ -22,16 +22,14 @@ import ErrorContext from "./Context/ErrorContext";
  */
 
 function App() {
-  const [token, setToken] = useState("");
   const [currentUser, setCurrentUser] = useState({});
   const [errors, setErrors] = useState([]);
 
   const history = useHistory();
 
   async function signUp(newUser) {
-    let token;
     try{
-      token = await JoblyApi.signUp(newUser);
+      const token = await JoblyApi.signUp(newUser);
       _handleLogin(token);
     } catch(err) {
       setErrors(err);
@@ -39,19 +37,17 @@ function App() {
   }
 
   async function login(loginCredentials) {
-    let token; 
-
     try{
-      token = await JoblyApi.login(loginCredentials);
+      const token = await JoblyApi.login(loginCredentials);
       _handleLogin(token);
     } catch(err) {
       setErrors(err);
     }
-
   }
 
+  // handleAuthenticate or authenticate
+  // TODO: pass this down instead of login/signup; move the requests to Login/Signup
   async function _handleLogin(token) {
-    setToken(token);
     JoblyApi.token = token;
     const { username } = jsonwebtoken.decode(token);
     const user = await JoblyApi.getUser(username);
@@ -60,7 +56,6 @@ function App() {
   }
 
   function logout() {
-    setToken("");
     JoblyApi.token = "";
     setCurrentUser({});
   }
@@ -68,6 +63,7 @@ function App() {
   return (
     <div className="App">
       <ErrorContext.Provider value={{errors, setErrors}}>
+        {/* TODO: don't need setCurrentUser in other components */}
         <UserContext.Provider value={{ currentUser, setCurrentUser }}>
           <Navigation logout={logout} />
           <Routes signUp={signUp} login={login} />

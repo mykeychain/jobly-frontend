@@ -23,6 +23,7 @@ function Login({ login }) {
   }
 
   // handleLogin: calls parent function
+  // we can skip this function and pass login directly
   function handleLogin(loginCredentials) {
     login(loginCredentials);
   }

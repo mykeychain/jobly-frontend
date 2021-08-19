@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState, Redirect } from "react";
 import JoblyApi from "../api";
+import UserContext from "../Context/UserContext";
 import CompanyList from "./CompanyList";
 import Loading from "./Loading";
 import SearchForm from "./SearchForm";
@@ -28,6 +29,12 @@ function Companies() {
     };
     _getInitialCompanies();
   }, []);
+
+  // TODO: pick up here in the morning
+  // const {currentUser} = useContext(UserContext);
+  // if (!currentUser.username) {
+  //   return <Redirect to="/" />;
+  // }
 
   // gets companies that match search term
   async function handleSearch(searchTerm) {

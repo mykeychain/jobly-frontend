@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import ErrorContext from "../Context/ErrorContext";
 import Alert from "./Alert";
 
+// TODO: consider AuthenticateForm to be more specific
 /** UserForm: controlled component that renders form and calls parent function
  *  on submit.
  *    props:
