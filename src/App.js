@@ -37,12 +37,12 @@ function App() {
   }
 
   async function login(loginCredentials) {
-    try{
+    // try{
       const token = await JoblyApi.login(loginCredentials);
-      _handleLogin(token);
-    } catch(err) {
-      setErrors(err);
-    }
+      await _handleLogin(token);
+    // } catch(err) {
+    //   setErrors(err);
+    // }
   }
 
   // handleAuthenticate or authenticate

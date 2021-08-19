@@ -37,9 +37,15 @@ function UserForm({ submit, fields }) {
   }
 
   // handleSubmit: calls parent function on submit
-  function handleSubmit(evt) {
+  // consider: try... catch here
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    submit(formData)
+    try{
+     submit(formData);
+     console.log("hello");
+    } catch(err) {
+      console.log("LOGGING", err)
+    }
   }
 
   return (

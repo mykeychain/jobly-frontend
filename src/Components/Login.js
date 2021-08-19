@@ -24,8 +24,9 @@ function Login({ login }) {
 
   // handleLogin: calls parent function
   // we can skip this function and pass login directly
-  function handleLogin(loginCredentials) {
-    login(loginCredentials);
+  // consider: try catch here
+  async function handleLogin(loginCredentials) {
+    await login(loginCredentials);
   }
 
   return <UserForm submit={handleLogin} fields={fields} />;
