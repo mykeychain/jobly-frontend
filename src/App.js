@@ -22,6 +22,8 @@ import UserContext from "./Context/UserContext";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
+  const [token, setToken] = useState("");
+
   const history = useHistory();
 
   console.log(history);
@@ -30,21 +32,33 @@ function App() {
   useEffect(function checkForToken() {
     async function _checkForToken() {
       const token = localStorage.getItem("token");
-      try {
-        if (token) await _handleLogin(token);
-      } catch (err) {
-        console.error("INVALID TOKEN RECEIVED.");
-        logout();
-      }
+      if (token) setToken(token);
     }
 
     _checkForToken();
   }, []);
 
+  // sets token in JoblyApi, gets and sets current user
+  useEffect(function setTokenAndSetUser() {
+    async function _setTokenAndSetUser() {
+      JoblyApi.token = token;
+      const { username } = jsonwebtoken.decode(token);
+      const user = await JoblyApi.getUser(username);
+      setCurrentUser(user);
+    }
+
+    try {
+      if (token) _setTokenAndSetUser();
+    } catch(err) {
+      console.error("INVALID TOKEN RECEIVED.");
+      logout();
+    }
+  }, [token])
+
   // signUp: registers user with API and logs in
   async function signUp(newUser) {
     const token = await JoblyApi.signUp(newUser);
-    await _handleLogin(token);
+    setToken(token);
     localStorage.setItem("token", token);
     history.push("/");
   }
@@ -52,22 +66,14 @@ function App() {
   // login: authenticates user with API and logs in
   async function login(loginCredentials) {
     const token = await JoblyApi.login(loginCredentials);
-    await _handleLogin(token);
+    setToken(token);
     localStorage.setItem("token", token);
     history.push("/");
   }
 
-  // TODO: Move history.push
-  // _handleLogin: sets token to JoblyApi and updates current user state
-  async function _handleLogin(token) {
-    JoblyApi.token = token;
-    const { username } = jsonwebtoken.decode(token);
-    const user = await JoblyApi.getUser(username);
-    setCurrentUser(user);
-  }
-
   // logout: clears localStorage token, JoblyApi token, and current user state
   function logout() {
+    setToken("");
     JoblyApi.token = "";
     localStorage.removeItem("token");
     setCurrentUser({});
