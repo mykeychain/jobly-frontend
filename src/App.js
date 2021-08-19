@@ -26,6 +26,8 @@ function App() {
   const [errors, setErrors] = useState([]);
   const history = useHistory();
 
+  console.log(history);
+
   // if token in local storage, logs in
   useEffect(function checkForToken() {
     async function _checkForToken() {

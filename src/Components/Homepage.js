@@ -12,7 +12,7 @@ import UserContext from "../Context/UserContext";
 
 function Homepage() {
   const { currentUser } = useContext(UserContext);
-
+  
   // if not logged in, display login and sign up links,
   // otherwise, show welcome page
   return (
