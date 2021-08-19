@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import jsonwebtoken from "jsonwebtoken";
 import { useHistory } from "react-router-dom";
 import JoblyApi from "./api";
@@ -24,19 +24,38 @@ import ErrorContext from "./Context/ErrorContext";
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [errors, setErrors] = useState([]);
-
   const history = useHistory();
 
+  // if token in local storage, logs in
+  useEffect(function checkForToken() {
+    async function _checkForToken() {
+      const token = localStorage.getItem("token");
+      try{
+        if (token) await _handleLogin(token)
+      } catch(err) {
+        console.error("INVALID TOKEN RECEIVED.");
+        logout();
+      }
+    };
+
+    _checkForToken();
+  }, [])
+
+  // signUp: registers user with API and logs in
   async function signUp(newUser) {
     const token = await JoblyApi.signUp(newUser);
     await _handleLogin(token);
+    localStorage.setItem('token', token);
   }
 
+  // login: authenticates user with API and logs in
   async function login(loginCredentials) {
     const token = await JoblyApi.login(loginCredentials);
     await _handleLogin(token);
+    localStorage.setItem('token', token);
   }
 
+  // _handleLogin: sets token to JoblyApi and updates current user state
   async function _handleLogin(token) {
     JoblyApi.token = token;
     const { username } = jsonwebtoken.decode(token);
@@ -45,8 +64,10 @@ function App() {
     history.push("/");
   }
 
+  // logout: clears localStorage token, JoblyApi token, and current user state
   function logout() {
     JoblyApi.token = "";
+    localStorage.removeItem("token");
     setCurrentUser({});
   }
 
