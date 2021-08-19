@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import ErrorContext from "../Context/ErrorContext";
+import { useState } from "react";
 import Alert from "./Alert";
 
 // TODO: consider AuthenticateForm to be more specific
@@ -11,20 +10,13 @@ import Alert from "./Alert";
  *
  *    states:
  *      - formData: { username, password, ... }
- *    
- *    context:
- *      - ErrorContext: [error, ...]
+ *      - errors: ["error message", ...]
  *
- *    { Login, Signup } -> UserForm
+ *    { Login, Signup } -> UserForm -> Alert
  */
 function UserForm({ submit, fields }) {
   const [formData, setFormData] = useState({});
-
-  const {errors, setErrors} = useContext(ErrorContext);
-
-  useEffect(function clearErrors(){
-    setErrors([]);
-  }, [setErrors]);
+  const [errors, setErrors] = useState([]);
 
   // handleChange: updates state on change
   function handleChange(evt) {
@@ -36,15 +28,14 @@ function UserForm({ submit, fields }) {
     }));
   }
 
-  // handleSubmit: calls parent function on submit
-  // consider: try... catch here
+  // handleSubmit: calls parent function on submit, catches errors
+  // and updates state
   async function handleSubmit(evt) {
     evt.preventDefault();
     try{
-     submit(formData);
-     console.log("hello");
+      await submit(formData);
     } catch(err) {
-      console.log("LOGGING", err)
+      setErrors(err);
     }
   }
 

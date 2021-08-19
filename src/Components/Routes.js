@@ -7,7 +7,7 @@ import Profile from "./Profile";
 import Signup from "./Signup";
 import Jobs from "./Jobs";
 
-function Routes({signUp, login}) {
+function Routes({currentUser, signUp, login}) {
   return (
     <div className="Routes">
       <Switch>

@@ -28,25 +28,15 @@ function App() {
   const history = useHistory();
 
   async function signUp(newUser) {
-    try{
-      const token = await JoblyApi.signUp(newUser);
-      _handleLogin(token);
-    } catch(err) {
-      setErrors(err);
-    }
+    const token = await JoblyApi.signUp(newUser);
+    await _handleLogin(token);
   }
 
   async function login(loginCredentials) {
-    // try{
-      const token = await JoblyApi.login(loginCredentials);
-      await _handleLogin(token);
-    // } catch(err) {
-    //   setErrors(err);
-    // }
+    const token = await JoblyApi.login(loginCredentials);
+    await _handleLogin(token);
   }
 
-  // handleAuthenticate or authenticate
-  // TODO: pass this down instead of login/signup; move the requests to Login/Signup
   async function _handleLogin(token) {
     JoblyApi.token = token;
     const { username } = jsonwebtoken.decode(token);
@@ -63,8 +53,7 @@ function App() {
   return (
     <div className="App">
       <ErrorContext.Provider value={{errors, setErrors}}>
-        {/* TODO: don't need setCurrentUser in other components */}
-        <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+        <UserContext.Provider value={{ currentUser }}>
           <Navigation logout={logout} />
           <Routes signUp={signUp} login={login} />
         </UserContext.Provider>

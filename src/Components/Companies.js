@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState, Redirect } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import JoblyApi from "../api";
 import UserContext from "../Context/UserContext";
 import CompanyList from "./CompanyList";
@@ -18,23 +19,21 @@ function Companies() {
 
   const [companies, setCompanies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  
   // gets all companies on mount
   useEffect(function getInitialCompanies() {
     const _getInitialCompanies = async function () {
-      // can call handleSearch here to reduce duplicated code
-      const companies = await JoblyApi.getAllCompanies();
-      setCompanies(companies);
+      handleSearch();
       setIsLoading(false);
     };
     _getInitialCompanies();
   }, []);
-
+  
   // TODO: pick up here in the morning
-  // const {currentUser} = useContext(UserContext);
-  // if (!currentUser.username) {
-  //   return <Redirect to="/" />;
-  // }
+  const {currentUser} = useContext(UserContext);
+  if (!currentUser?.username) {
+    return <Redirect to="/" />;
+  }
 
   // gets companies that match search term
   async function handleSearch(searchTerm) {
