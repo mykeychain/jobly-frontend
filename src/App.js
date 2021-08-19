@@ -6,8 +6,9 @@ import "./App.css";
 import Navigation from "./Components/Navigation";
 import Routes from "./Components/Routes";
 import UserContext from "./Context/UserContext";
+import ErrorContext from "./Context/ErrorContext";
 
-/** App: has everything
+/** App: renders nav bar and routes
  *    states:
  *      - token: "token"
  *      - currentUser: { username, isAdmin, iat }
@@ -15,6 +16,7 @@ import UserContext from "./Context/UserContext";
  *    context:
  *      - UserContext Provider: {currentUser, setCurrentUser}
  *          where currentUser = { username, firstName, lastName, isAdmin, applications }
+ *      - ErrorContext Provider: [error, ...]
  *
  *    App -> { Navigation, Routes }
  */
@@ -22,17 +24,30 @@ import UserContext from "./Context/UserContext";
 function App() {
   const [token, setToken] = useState("");
   const [currentUser, setCurrentUser] = useState({});
+  const [errors, setErrors] = useState([]);
 
   const history = useHistory();
 
   async function signUp(newUser) {
-    const token = await JoblyApi.signUp(newUser);
-    _handleLogin(token);
+    let token;
+    try{
+      token = await JoblyApi.signUp(newUser);
+      _handleLogin(token);
+    } catch(err) {
+      setErrors(err);
+    }
   }
 
   async function login(loginCredentials) {
-    const token = await JoblyApi.login(loginCredentials);
-    _handleLogin(token);
+    let token; 
+
+    try{
+      token = await JoblyApi.login(loginCredentials);
+      _handleLogin(token);
+    } catch(err) {
+      setErrors(err);
+    }
+
   }
 
   async function _handleLogin(token) {
@@ -52,10 +67,12 @@ function App() {
 
   return (
     <div className="App">
-      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
-        <Navigation logout={logout} />
-        <Routes signUp={signUp} login={login} />
-      </UserContext.Provider>
+      <ErrorContext.Provider value={{errors, setErrors}}>
+        <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+          <Navigation logout={logout} />
+          <Routes signUp={signUp} login={login} />
+        </UserContext.Provider>
+      </ErrorContext.Provider>
     </div>
   );
 }

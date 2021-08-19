@@ -8,7 +8,8 @@ import UserForm from "./UserForm";
  *      - login: parent function
  *
  *    context:
- *      -
+ *      - UserContext: {currentUser, setCurrentUser}
+ *          where currentUser = { username, firstName, lastName, isAdmin, applications }
  *
  *    Routes -> Login -> UserForm
  */

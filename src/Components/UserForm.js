@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import ErrorContext from "../Context/ErrorContext";
+import Alert from "./Alert";
 
 /** UserForm: controlled component that renders form and calls parent function
  *  on submit.
@@ -8,11 +10,20 @@ import { useState } from "react";
  *
  *    states:
  *      - formData: { username, password, ... }
+ *    
+ *    context:
+ *      - ErrorContext: [error, ...]
  *
  *    { Login, Signup } -> UserForm
  */
 function UserForm({ submit, fields }) {
   const [formData, setFormData] = useState({});
+
+  const {errors, setErrors} = useContext(ErrorContext);
+
+  useEffect(function clearErrors(){
+    setErrors([]);
+  }, [setErrors]);
 
   // handleChange: updates state on change
   function handleChange(evt) {
@@ -27,7 +38,7 @@ function UserForm({ submit, fields }) {
   // handleSubmit: calls parent function on submit
   function handleSubmit(evt) {
     evt.preventDefault();
-    submit(formData);
+    submit(formData)
   }
 
   return (
@@ -42,6 +53,7 @@ function UserForm({ submit, fields }) {
           onChange={handleChange}
         ></input>
       ))}
+      {errors.length > 0 ? errors.map((error, i) => <Alert error={error} key={i}/>) : ""}
       <button>Submit</button>
     </form>
   );

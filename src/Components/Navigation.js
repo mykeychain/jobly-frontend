@@ -20,22 +20,24 @@ function Navigation({ logout }) {
   if (!currentUser.username) {
     return (
       <div className="Navigation">
-        <NavLink exact to="/">
-          Home
-        </NavLink>
-        <NavLink exact to="/login">
-          Login
-        </NavLink>
-        <NavLink exact to="/signup">
-          Sign Up
-        </NavLink>
+        <nav className="Navigation-nav">
+          <NavLink exact to="/">
+            Home
+          </NavLink>
+          <NavLink exact to="/login">
+            Login
+          </NavLink>
+          <NavLink exact to="/signup">
+            Sign Up
+          </NavLink>
+        </nav>
       </div>
     );
   }
 
   return (
     <div className="Navigation">
-      <nav>
+      <nav className="Navigation-nav">
         <NavLink exact to="/">
           Home
         </NavLink>
@@ -49,7 +51,7 @@ function Navigation({ logout }) {
           Profile
         </NavLink>
         <Link to="/" onClick={logout}>
-          Logout
+          Logout {currentUser.username}
         </Link>
       </nav>
     </div>

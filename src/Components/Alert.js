@@ -1,7 +1,16 @@
-function Alert() {
+/** Alert: displays errors
+ *    props:
+ *      - error: "error"
+ * 
+ *    { Login, Signup } -> Alert
+ */
+
+function Alert({error}) {
+  return (
   <div className="Alert">
-    <h1>Alert</h1>
-  </div>;
+    <p>{error}</p>
+  </div>
+  )
 }
 
 export default Alert;
