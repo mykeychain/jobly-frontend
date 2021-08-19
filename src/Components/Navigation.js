@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
-import UserContext from "../Context/UserContext";
 import "./Navigation.css";
 
 /** Navigation: renders navigation bar

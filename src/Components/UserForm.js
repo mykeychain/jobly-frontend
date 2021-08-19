@@ -32,9 +32,9 @@ function UserForm({ submit, fields }) {
   // and updates state
   async function handleSubmit(evt) {
     evt.preventDefault();
-    try{
+    try {
       await submit(formData);
-    } catch(err) {
+    } catch (err) {
       setErrors(err);
     }
   }
@@ -49,9 +49,12 @@ function UserForm({ submit, fields }) {
           key={field}
           value={formData.field}
           onChange={handleChange}
+          autoComplete={field === "password" ? "off" : ""}
         ></input>
       ))}
-      {errors.length > 0 ? errors.map((error, i) => <Alert error={error} key={i}/>) : ""}
+      {errors.length > 0
+        ? errors.map((error, i) => <Alert error={error} key={i} />)
+        : ""}
       <button>Submit</button>
     </form>
   );
