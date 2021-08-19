@@ -6,6 +6,7 @@ import "./App.css";
 import Navigation from "./Components/Navigation";
 import Routes from "./Components/Routes";
 import UserContext from "./Context/UserContext";
+import Loading from "./Components/Loading";
 
 /** App: renders nav bar and routes
  *    states:
@@ -23,37 +24,44 @@ import UserContext from "./Context/UserContext";
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [token, setToken] = useState("");
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
 
   const history = useHistory();
-
-  console.log(history);
 
   // if token in local storage, logs in
   useEffect(function checkForToken() {
     async function _checkForToken() {
       const token = localStorage.getItem("token");
-      if (token) setToken(token);
+      if (token) {
+        setToken(token);
+      } else {
+        setIsAuthenticating(false);
+      }
     }
 
     _checkForToken();
   }, []);
 
   // sets token in JoblyApi, gets and sets current user
-  useEffect(function setTokenAndSetUser() {
-    async function _setTokenAndSetUser() {
-      JoblyApi.token = token;
-      const { username } = jsonwebtoken.decode(token);
-      const user = await JoblyApi.getUser(username);
-      setCurrentUser(user);
-    }
+  useEffect(
+    function storeTokenAndSetUser() {
+      async function _storeTokenAndSetUser() {
+        try {
+          JoblyApi.token = token;
+          const { username } = jsonwebtoken.decode(token);
+          const user = await JoblyApi.getUser(username);
+          setCurrentUser(user);
+          setIsAuthenticating(false);
+        } catch {
+          console.error("INVALID TOKEN RECEIVED.");
+          logout();
+        }
+      }
 
-    try {
-      if (token) _setTokenAndSetUser();
-    } catch(err) {
-      console.error("INVALID TOKEN RECEIVED.");
-      logout();
-    }
-  }, [token])
+      if (token) _storeTokenAndSetUser();
+    },
+    [token]
+  );
 
   // signUp: registers user with API and logs in
   async function signUp(newUser) {
@@ -83,7 +91,11 @@ function App() {
     <div className="App">
       <UserContext.Provider value={{ currentUser }}>
         <Navigation currentUser={currentUser} logout={logout} />
-        <Routes currentUser={currentUser} signUp={signUp} login={login} />
+        {!isAuthenticating ? (
+          <Routes currentUser={currentUser} signUp={signUp} login={login} />
+        ) : (
+          <Loading />
+        )}
       </UserContext.Provider>
     </div>
   );
