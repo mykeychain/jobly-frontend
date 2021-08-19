@@ -23,7 +23,7 @@ function Routes({ currentUser, signUp, login }) {
     <div className="Routes">
       <Switch>
         <Route exact path="/">
-          <Homepage />
+          <Homepage currentUser={currentUser} />
         </Route>
         <Route exact path="/login">
           {isLoggedIn ? <Redirect to="/" /> : <Login login={login} />}

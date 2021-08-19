@@ -1,10 +1,10 @@
 import JobList from "./JobList";
 
 /** CompanyDetail: displays company details and renders job list
- *    props: 
+ *    props:
  *      - company: { handle, name, description, numEmployees, logoUrl, jobs }
  *          where jobs is [{ id, title, salary, equity }, ...]
- *        
+ *
  *    CompanyFinder -> CompanyDetail -> JobList
  */
 
