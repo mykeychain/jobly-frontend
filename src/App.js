@@ -88,12 +88,22 @@ function App() {
     setCurrentUser({});
   }
 
+  async function updateUser(updateData) {
+    const user = await JoblyApi.update(updateData);
+    setCurrentUser(user);
+  }
+
   return (
     <div className="App">
       <UserContext.Provider value={{ currentUser }}>
         <Navigation currentUser={currentUser} logout={logout} />
         {!isAuthenticating ? (
-          <Routes currentUser={currentUser} signUp={signUp} login={login} />
+          <Routes
+            currentUser={currentUser}
+            signUp={signUp}
+            login={login}
+            updateUser={updateUser}
+          />
         ) : (
           <Loading />
         )}

@@ -16,7 +16,7 @@ import Jobs from "./Jobs";
  *   App -> Routes -> { Homepage, Login, Signup, Companies, CompanyFinder, Jobs, Profile }
  */
 
-function Routes({ currentUser, signUp, login }) {
+function Routes({ currentUser, signUp, login, updateUser }) {
   const isLoggedIn = !!currentUser.username;
 
   return (
@@ -41,7 +41,11 @@ function Routes({ currentUser, signUp, login }) {
           {isLoggedIn ? <Jobs /> : <Redirect to="/login" />}
         </Route>
         <Route exact path="/profile">
-          {isLoggedIn ? <Profile /> : <Redirect to="/login" />}
+          {isLoggedIn ? (
+            <Profile currentUser={currentUser} updateUser={updateUser} />
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
         <Redirect to="/" />
       </Switch>

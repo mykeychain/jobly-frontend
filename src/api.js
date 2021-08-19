@@ -58,6 +58,12 @@ class JoblyApi {
     return res.user;
   }
 
+  static async updateUser({ username, ...updateData }) {
+    await this.request(`users/${username}`, updateData, "patch");
+    let res = await JoblyApi.getUser(username);
+    return res.user;
+  }
+
   /*********************************************************** Companies */
 
   /** getAllCompanies: Get all companies from API with optional name filter.
