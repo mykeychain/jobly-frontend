@@ -16,11 +16,6 @@ import UserForm from "./UserForm";
  */
 function Login({ login }) {
   const fields = ["username", "password"];
-  const { currentUser } = useContext(UserContext);
-
-  if (currentUser.username) {
-    return <Redirect to="/" />;
-  }
 
   return <UserForm submit={login} fields={fields} />;
 }

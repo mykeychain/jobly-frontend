@@ -7,7 +7,18 @@ import Profile from "./Profile";
 import Signup from "./Signup";
 import Jobs from "./Jobs";
 
-function Routes({currentUser, signUp, login}) {
+/** Directs user to correct endpoint
+ *    props:
+ *      - currentUser = { username, firstName, lastName, isAdmin, applications }
+ *      - signUp = parent function
+ *      - login = parent function
+ *
+ *   App -> Routes -> { Homepage, Login, Signup, Companies, CompanyFinder, Jobs, Profile }
+ */
+
+function Routes({ currentUser, signUp, login }) {
+  const isLoggedIn = !!currentUser.username;
+
   return (
     <div className="Routes">
       <Switch>
@@ -15,22 +26,22 @@ function Routes({currentUser, signUp, login}) {
           <Homepage />
         </Route>
         <Route exact path="/login">
-          <Login login={login}/>
+          {isLoggedIn ? <Redirect to="/" /> : <Login login={login} />}
         </Route>
         <Route exact path="/signup">
-          <Signup signUp={signUp}/>
+          {isLoggedIn ? <Redirect to="/" /> : <Signup signUp={signUp} />}
         </Route>
         <Route exact path="/companies">
-          <Companies />
+          {isLoggedIn ? <Companies /> : <Redirect to="/login" />}
         </Route>
         <Route exact path="/companies/:handle">
-          <CompanyFinder />
+          {isLoggedIn ? <CompanyFinder /> : <Redirect to="/login" />}
         </Route>
         <Route exact path="/jobs">
-          <Jobs />
+          {isLoggedIn ? <Jobs /> : <Redirect to="/login" />}
         </Route>
         <Route exact path="/profile">
-          <Profile />
+          {isLoggedIn ? <Profile /> : <Redirect to="/login" />}
         </Route>
         <Redirect to="/" />
       </Switch>

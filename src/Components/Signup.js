@@ -16,11 +16,6 @@ import { Redirect } from "react-router-dom";
  */
 function Signup({ signUp }) {
   const fields = ["username", "password", "firstName", "lastName", "email"];
-  const { currentUser } = useContext(UserContext);
-  
-  if (currentUser.username) {
-    return <Redirect to="/" />;
-  }
 
   return <UserForm submit={signUp} fields={fields} />;
 }

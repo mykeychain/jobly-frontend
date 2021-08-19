@@ -52,10 +52,10 @@ function App() {
 
   return (
     <div className="App">
-      <ErrorContext.Provider value={{errors, setErrors}}>
+      <ErrorContext.Provider value={{ errors, setErrors }}>
         <UserContext.Provider value={{ currentUser }}>
-          <Navigation logout={logout} />
-          <Routes signUp={signUp} login={login} />
+          <Navigation currentUser={currentUser} logout={logout} />
+          <Routes currentUser={currentUser} signUp={signUp} login={login} />
         </UserContext.Provider>
       </ErrorContext.Provider>
     </div>

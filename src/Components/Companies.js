@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
 import JoblyApi from "../api";
-import UserContext from "../Context/UserContext";
 import CompanyList from "./CompanyList";
 import Loading from "./Loading";
 import SearchForm from "./SearchForm";
@@ -19,21 +17,15 @@ function Companies() {
 
   const [companies, setCompanies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  
+
   // gets all companies on mount
   useEffect(function getInitialCompanies() {
     const _getInitialCompanies = async function () {
-      handleSearch();
+      await handleSearch();
       setIsLoading(false);
     };
     _getInitialCompanies();
   }, []);
-  
-  // TODO: pick up here in the morning
-  const {currentUser} = useContext(UserContext);
-  if (!currentUser?.username) {
-    return <Redirect to="/" />;
-  }
 
   // gets companies that match search term
   async function handleSearch(searchTerm) {
@@ -42,9 +34,7 @@ function Companies() {
   }
 
   if (isLoading) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
 
   return (
