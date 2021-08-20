@@ -42,15 +42,19 @@ function UserForm({ submit, fields }) {
   return (
     <form className="UserForm" onSubmit={handleSubmit}>
       {fields.map((field) => (
-        <input
-          type={field === "password" ? field : "text"}
-          name={field}
-          placeholder={field}
-          key={field}
-          value={formData.field}
-          onChange={handleChange}
-          autoComplete={field === "password" ? "off" : ""}
-        ></input>
+        <div key={field}>
+          <label htmlFor={field}>
+            {field}
+          </label>
+          <input
+            type={field === "password" ? field : "text"}
+            id={field}
+            name={field}
+            value={formData.field}
+            onChange={handleChange}
+            autoComplete={field === "password" ? "off" : ""}
+          ></input>
+        </div>
       ))}
       {errors.length > 0
         ? errors.map((error, i) => <Alert error={error} key={i} />)

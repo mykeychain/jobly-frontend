@@ -8,7 +8,7 @@ import "./JobCard.css";
  *
  *    context:
  *      - UserContext: {currentUser, setCurrentUser}
- *          where currentUser = { username, firstName, lastName, isAdmin, applications }
+ *          where currentUser: { username, firstName, lastName, email, isAdmin, applications }
  *
  *    JobList -> JobCard
  */

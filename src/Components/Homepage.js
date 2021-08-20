@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 /** Displays login/signup or welcome page.
  *
  *    props:
- *       - currentUser = { username, firstName, lastName,
+ *       - currentUser: { username, firstName, lastName, email,
  *         isAdmin, applications }
  */
 

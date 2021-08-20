@@ -1,13 +1,25 @@
-// import UserForm from "./UserForm";
-
 import { useState } from "react";
 import Alert from "./Alert";
 import "./Profile.css";
 
-/** TODO: docstring */
-
+/** Profile: renders form to update user information
+ *    props: 
+ *      - currentUser: { username, firstName, lastName, email, isAdmin, applications }
+ *      - updateUser: parent function
+ * 
+ *    states:
+ *      - formData: { username, firstName, lastName, email }
+ *      - errors: ["error message", ...]
+ * 
+ *    Routes -> Profile
+ */
 function Profile({ currentUser, updateUser }) {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    username: currentUser.username,
+    firstName: currentUser.firstName,
+    lastName: currentUser.lastName,
+    email: currentUser.email
+  });
   const [errors, setErrors] = useState([]);
 
   // handleChange: updates state on change
@@ -34,35 +46,35 @@ function Profile({ currentUser, updateUser }) {
   return (
     <div className="Profile">
       <form onSubmit={handleSubmit}>
-        <label for="username">Username</label>
+        <label htmlFor="username">Username</label>
         <input
-          readOnly="true"
+          readOnly={true}
           id="username"
           name="username"
-          value={currentUser.username}
+          value={formData.username}
         ></input>
-        <label for="firstName">First Name</label>
+        <label htmlFor="firstName">First Name</label>
         <input
           onChange={handleChange}
           id="firstName"
           name="firstName"
-          value={currentUser.firstName}
+          value={formData.firstName}
         ></input>
-        <label for="last-name">Last Name</label>
+        <label htmlFor="last-name">Last Name</label>
         <input
           onChange={handleChange}
           id="lastName"
           name="lastName"
-          value={currentUser.lastName}
+          value={formData.lastName}
         ></input>
-        <label for="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input
           onChange={handleChange}
           id="email"
           name="email"
-          value={currentUser.email}
+          value={formData.email}
         ></input>
-        <label for="password">Confirm password to make changes</label>
+        <label htmlFor="password">Confirm password to make changes</label>
         <input
           onChange={handleChange}
           id="password"

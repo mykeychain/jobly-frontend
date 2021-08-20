@@ -9,9 +9,10 @@ import Jobs from "./Jobs";
 
 /** Directs user to correct endpoint
  *    props:
- *      - currentUser = { username, firstName, lastName, isAdmin, applications }
- *      - signUp = parent function
- *      - login = parent function
+ *      - currentUser: { username, firstName, lastName, email, isAdmin, applications }
+ *      - signUp: parent function
+ *      - login: parent function
+ *      - updateUser: parent function
  *
  *   App -> Routes -> { Homepage, Login, Signup, Companies, CompanyFinder, Jobs, Profile }
  */

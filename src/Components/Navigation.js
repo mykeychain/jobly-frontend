@@ -4,7 +4,7 @@ import "./Navigation.css";
 /** Navigation: renders navigation bar
  *    props:
  *      - logout: parent function
- *      - currentUser = { username, firstName, lastName, isAdmin, applications }
+ *      - currentUser: { username, firstName, lastName, email, isAdmin, applications }
  *
  *
  *    App -> Navigation

@@ -1,4 +1,14 @@
-form {
+.Profile form {
   display: flex;
   flex-direction: column;
+}
+
+.Profile form input {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.Profile form button {
+  width: 30%;
+  margin: 5px auto;
 }

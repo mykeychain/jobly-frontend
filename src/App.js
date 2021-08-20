@@ -11,11 +11,11 @@ import Loading from "./Components/Loading";
 /** App: renders nav bar and routes
  *    states:
  *      - token: "token"
- *      - currentUser: { username, firstName, lastName, isAdmin, applications }
+ *      - currentUser: { username, firstName, lastName, email, isAdmin, applications }
  *
  *    context:
  *      - UserContext Provider: {currentUser, setCurrentUser}
- *          where currentUser = { username, firstName, lastName, isAdmin, applications }
+ *          where currentUser = { username, firstName, lastName, email, isAdmin, applications }
  *          where applications = [id, ...]
  *
  *    App -> { Navigation, Routes }
@@ -88,9 +88,11 @@ function App() {
     setCurrentUser({});
   }
 
+  // updateUser: updates user with API, sets currentUser to updated user
   async function updateUser(updateData) {
-    const user = await JoblyApi.update(updateData);
+    const user = await JoblyApi.updateUser(updateData);
     setCurrentUser(user);
+    history.push("/");
   }
 
   return (
