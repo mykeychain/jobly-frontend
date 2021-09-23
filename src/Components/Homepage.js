@@ -14,8 +14,8 @@ function Homepage({ currentUser }) {
       <p>All of the jobs in one, convenient place.</p>
       {!currentUser.username ? (
         <div>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign up</Link>
+          <Link className="btn btn-success me-3" to="/login">Login</Link>
+          <Link className="btn btn-danger" to="/signup">Sign up</Link>
         </div>
       ) : (
         <p>Welcome back, {currentUser.username}</p>

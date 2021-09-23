@@ -10,7 +10,7 @@ import "./CompanyList.css";
 
 function CompanyList({ companies }) {
   return (
-    <div className="CompanyList">
+    <div className="CompanyList row">
       {companies.map((company) => (
         <CompanyCard company={company} key={company.handle} />
       ))}

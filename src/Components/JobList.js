@@ -9,7 +9,7 @@ import JobCard from "./JobCard";
 
 function JobList({ jobs }) {
   return (
-    <div className="JobList">
+    <div className="JobList row">
       {jobs.map((job) => (
         <JobCard job={job} key={job.id} />
       ))}

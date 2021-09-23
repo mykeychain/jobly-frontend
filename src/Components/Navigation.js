@@ -39,29 +39,31 @@ function Navigation({ currentUser, logout }) {
 
   return (
     <nav className="navbar navbar-expand-md navbar-light bg-light mb-5">
-      <NavLink className="navbar-brand" exact to="/">
-        Home
-      </NavLink>
-      <ul className="navbar-nav">
-        <li className="navbar-item me-4">
-          <NavLink className="nav-link" exact to="/companies">
-            Companies
-          </NavLink>
-        </li>
-        <li className="navbar-item me-4">
-          <NavLink className="nav-link" exact to="/jobs">
-            Jobs
-          </NavLink>
-        </li>
-        <NavLink className="nav-link" exact to="/profile">
-          Profile
+      <div className="container-fluid">
+        <NavLink className="navbar-brand" exact to="/">
+          Home
         </NavLink>
-        <li className="navbar-item me-4">
-          <Link className="nav-link" to="/" onClick={logout}>
-            Logout {currentUser.username}
-          </Link>
-        </li>
-      </ul>
+        <ul className="navbar-nav">
+          <li className="navbar-item me-4">
+            <NavLink className="nav-link" exact to="/companies">
+              Companies
+            </NavLink>
+          </li>
+          <li className="navbar-item me-4">
+            <NavLink className="nav-link" exact to="/jobs">
+              Jobs
+            </NavLink>
+          </li>
+          <NavLink className="nav-link" exact to="/profile">
+            Profile
+          </NavLink>
+          <li className="navbar-item me-4">
+            <Link className="nav-link" to="/" onClick={logout}>
+              Logout {currentUser.username}
+            </Link>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 }

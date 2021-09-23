@@ -1,5 +1,13 @@
-.CompanyCard-div {
-    border: 1px solid black;
-    width: 90%;
-    margin: 20px auto;
+.CompanyCard {
+    color: black;
+    text-decoration: none;
+}
+
+.card-img {
+    height: 100px;
+    width: 150px;
+}
+
+.card-body {
+    text-align: start;
 }

@@ -18,19 +18,21 @@ function JobCard({ job }) {
 
   function checkApplied() {
     if (applications.includes(job.id)) {
-      return <button disabled>Applied</button>;
+      return <button className="btn btn-secondary" disabled>Applied</button>;
     } else {
-      return <button>Apply</button>;
+      return <button className="btn btn-success">Apply</button>;
     }
   }
 
   return (
-    <div className="JobCard">
-      <h5>{job.title}</h5>
-      <p>{job.companyName}</p>
-      <small>Salary: {job.salary}</small>
-      <small>Equity: {job.equity}</small>
-      <form>{checkApplied()}</form>
+    <div className="row">
+      <div className="card col-6 p-3 mb-3 mx-auto">
+        <h5>{job.title}</h5>
+        <p>{job.companyName}</p>
+        <small>Salary: {job.salary}</small>
+        <small>Equity: {job.equity}</small>
+        <form>{checkApplied()}</form>
+      </div>
     </div>
   );
 }

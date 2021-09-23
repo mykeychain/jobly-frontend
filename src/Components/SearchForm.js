@@ -26,14 +26,19 @@ function SearchForm({ search }) {
   }
 
   return (
-    <div className="SearchForm">
+    <div className="SearchForm mb-3">
       <form onSubmit={handleSearch}>
-        <input
-          onChange={handleChange}
-          type="text"
-          placeholder="Enter search term..."
-        ></input>
-        <button>Search</button>
+        <div className="row d-flex justify-content-center">
+          <div className="col-4">
+            <input
+              className="form-control"
+              onChange={handleChange}
+              type="text"
+              placeholder="Enter search term..."
+            ></input>
+          </div>
+          <button className="btn btn-secondary col-1">Search</button>
+        </div>
       </form>
     </div>
   );
