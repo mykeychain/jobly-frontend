@@ -15,42 +15,54 @@ function Navigation({ currentUser, logout }) {
 
   if (!isLoggedIn) {
     return (
-      <div className="Navigation">
-        <nav className="Navigation-nav">
-          <NavLink exact to="/">
+      <nav className="navbar navbar-expand-md navbar-light bg-light">
+        <div className="container-fluid">
+          <NavLink className="navbar-brand ms-4" exact to="/">
             Home
           </NavLink>
-          <NavLink exact to="/login">
-            Login
-          </NavLink>
-          <NavLink exact to="/signup">
-            Sign Up
-          </NavLink>
-        </nav>
-      </div>
+          <ul className="navbar-nav">
+            <li className="nav-item me-4">
+              <NavLink className="nav-link" exact to="/login">
+                Login
+              </NavLink>
+            </li>
+            <li className="nav-item me-4">
+              <NavLink className="nav-link" exact to="/signup">
+                Sign Up
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </nav>
     );
   }
 
   return (
-    <div className="Navigation">
-      <nav className="Navigation-nav">
-        <NavLink exact to="/">
-          Home
-        </NavLink>
-        <NavLink exact to="/companies">
-          Companies
-        </NavLink>
-        <NavLink exact to="/jobs">
-          Jobs
-        </NavLink>
-        <NavLink exact to="/profile">
-          Profile
-        </NavLink>
-        <Link to="/" onClick={logout}>
-          Logout {currentUser.username}
-        </Link>
-      </nav>
-    </div>
+    <nav className="navbar navbar-expand-md">
+      <NavLink className="navbar-brand" exact to="/">
+        Home
+      </NavLink>
+      <ul className="navbar-nav">
+        <li className="navbar-item me-4">
+          <NavLink className="nav-link" exact to="/companies">
+            Companies
+          </NavLink>
+        </li>
+        <li className="navbar-item me-4">
+          <NavLink className="nav-link" exact to="/jobs">
+            Jobs
+          </NavLink>
+        </li>
+          <NavLink className="nav-link" exact to="/profile">
+            Profile
+          </NavLink>
+        <li className="navbar-item me-4">
+          <Link className="nav-link" to="/" onClick={logout}>
+            Logout {currentUser.username}
+          </Link>
+        </li>
+      </ul>
+    </nav>
   );
 }
 
