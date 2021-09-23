@@ -42,24 +42,27 @@ function UserForm({ submit, fields }) {
   return (
     <form className="UserForm" onSubmit={handleSubmit}>
       {fields.map((field) => (
-        <div key={field}>
-          <label htmlFor={field}>
-            {field}
-          </label>
-          <input
-            type={field === "password" ? field : "text"}
-            id={field}
-            name={field}
-            value={formData.field}
-            onChange={handleChange}
-            autoComplete={field === "password" ? "off" : ""}
-          ></input>
+        <div class="row">
+          <div key={field} className="col-6 col-lg-4 mx-auto mb-1">
+            <label className="form-label text-start" htmlFor={field}>
+              {field[0].toUpperCase() + field.slice(1)}
+            </label>
+            <input
+              type={field === "password" ? field : "text"}
+              className="form-control"
+              id={field}
+              name={field}
+              value={formData.field}
+              onChange={handleChange}
+              autoComplete={field === "password" ? "off" : ""}
+            ></input>
+          </div>
         </div>
       ))}
       {errors.length > 0
         ? errors.map((error, i) => <Alert error={error} key={i} />)
         : ""}
-      <button>Submit</button>
+      <button className="btn btn-dark mt-4">Submit</button>
     </form>
   );
 }

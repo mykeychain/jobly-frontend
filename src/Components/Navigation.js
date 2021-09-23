@@ -15,7 +15,7 @@ function Navigation({ currentUser, logout }) {
 
   if (!isLoggedIn) {
     return (
-      <nav className="navbar navbar-expand-md navbar-light bg-light">
+      <nav className="navbar navbar-expand-md navbar-light bg-light mb-5">
         <div className="container-fluid">
           <NavLink className="navbar-brand ms-4" exact to="/">
             Home
@@ -38,7 +38,7 @@ function Navigation({ currentUser, logout }) {
   }
 
   return (
-    <nav className="navbar navbar-expand-md">
+    <nav className="navbar navbar-expand-md navbar-light bg-light mb-5">
       <NavLink className="navbar-brand" exact to="/">
         Home
       </NavLink>
@@ -53,9 +53,9 @@ function Navigation({ currentUser, logout }) {
             Jobs
           </NavLink>
         </li>
-          <NavLink className="nav-link" exact to="/profile">
-            Profile
-          </NavLink>
+        <NavLink className="nav-link" exact to="/profile">
+          Profile
+        </NavLink>
         <li className="navbar-item me-4">
           <Link className="nav-link" to="/" onClick={logout}>
             Logout {currentUser.username}
