@@ -110,7 +110,7 @@ function Profile({ currentUser, updateUser }) {
         {errors.length > 0
           ? errors.map((error, i) => <Alert error={error} key={i} />)
           : ""}
-        <button>Submit</button>
+        <button className="btn btn-primary mt-3">Submit</button>
       </form>
     </div>
   );
