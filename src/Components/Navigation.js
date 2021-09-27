@@ -15,7 +15,7 @@ function Navigation({ currentUser, logout }) {
 
   if (!isLoggedIn) {
     return (
-      <nav className="navbar navbar-expand-md navbar-light bg-light mb-5">
+      <nav className="navbar navbar-expand-md navbar-light bg-light">
         <div className="container-fluid">
           <NavLink className="navbar-brand ms-4" exact to="/">
             Home
@@ -38,7 +38,7 @@ function Navigation({ currentUser, logout }) {
   }
 
   return (
-    <nav className="navbar navbar-expand-md navbar-light bg-light mb-5">
+    <nav className="navbar navbar-expand-md navbar-light bg-light">
       <div className="container-fluid">
         <NavLink className="navbar-brand ms-4" exact to="/">
           Home

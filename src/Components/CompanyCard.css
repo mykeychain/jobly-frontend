@@ -3,11 +3,13 @@
     text-decoration: none;
 }
 
-.card-img {
-    height: 100px;
-    width: 150px;
+.company-image {
+    height: 4rem;
+    width: 7rem;
+    margin: auto;
 }
 
 .card-body {
+    padding-left: 0;
     text-align: start;
 }

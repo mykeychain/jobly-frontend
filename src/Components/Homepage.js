@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./Homepage.css";
 
 /** Displays login/signup or welcome page.
  *
@@ -10,7 +11,9 @@ import { Link } from "react-router-dom";
 function Homepage({ currentUser }) {
   return (
     <div className="Homepage">
-      <div className="">
+      <div className="bg-image">
+      </div>
+      <div className="Homepage-card">
         <h3>Jobly</h3>
         <p>All of the jobs in one, convenient place.</p>
         {!currentUser.username ? (

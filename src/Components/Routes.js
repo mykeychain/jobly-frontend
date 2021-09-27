@@ -21,7 +21,7 @@ function Routes({ currentUser, signUp, login, updateUser }) {
   const isLoggedIn = !!currentUser.username;
 
   return (
-    <div className="Routes">
+    <div className="Routes mt-5">
       <Switch>
         <Route exact path="/">
           <Homepage currentUser={currentUser} />
