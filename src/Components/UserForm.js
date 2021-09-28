@@ -43,7 +43,7 @@ function UserForm({ submit, fields }) {
     <form className="UserForm" onSubmit={handleSubmit}>
       {fields.map((field) => (
         <div class="row">
-          <div key={field} className="col-6 col-lg-4 mx-auto mb-1">
+          <div key={field} className="col-6 col-lg-4 mx-auto mb-1 mt-5">
             <label className="form-label text-start" htmlFor={field}>
               {field[0].toUpperCase() + field.slice(1)}
             </label>

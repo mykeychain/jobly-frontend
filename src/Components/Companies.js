@@ -38,7 +38,7 @@ function Companies() {
   }
 
   return (
-    <div className="Companies">
+    <div className="Companies mt-5">
       <h1>Companies</h1>
       <SearchForm search={handleSearch} />
       <CompanyList companies={companies} />

@@ -33,16 +33,14 @@ function Jobs() {
   }
 
   if (isLoading) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
 
   return (
-    <div className="Jobs">
+    <div className="Jobs mt-5">
       <h1>Jobs</h1>
-      <SearchForm  search={handleSearch}/>
-      <JobList jobs={jobs}/>
+      <SearchForm search={handleSearch} />
+      <JobList jobs={jobs} />
     </div>
   );
 }

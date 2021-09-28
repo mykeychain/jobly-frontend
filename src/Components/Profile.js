@@ -46,7 +46,7 @@ function Profile({ currentUser, updateUser }) {
   return (
     <div className="Profile">
       <form onSubmit={handleSubmit}>
-        <div className="form-row col-6 col-lg-4 mx-auto mb-1">
+        <div className="form-row col-6 col-lg-4 mx-auto mb-1 mt-5">
           <label className="col-form-label" htmlFor="username">
             Username
           </label>
