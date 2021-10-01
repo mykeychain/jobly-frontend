@@ -1,6 +1,6 @@
 # Jobly
 
-Jobly is a fullstack application where users can search for and apply to job openings. Jobly utilizes a React frontend and an Express.js backend. For ease of deployment, the backend repository has been separated and can be found [here](https://github.com/ZeeTom/Jobly-Backend).
+Jobly is a fullstack application where users can search for and apply to job openings. Jobly utilizes a React frontend and an RESTful Express.js backend. For ease of deployment, the backend repository has been separated and can be found [here](https://github.com/ZeeTom/Jobly-Backend).
 
 Jobly allows users to sign-up or login. Authentication is implemented with Bcrypt and persists with JSON Web Tokens. Once logged in, users have access to the following features: 
 - search for companies by name
@@ -38,7 +38,7 @@ You can view the deployed version of Jobly [here](https://joblynow.surge.sh/).
 
 ## Authors 
 
-ShareBnB is authored by [Mike Chang](https://github.com/mykeychain) and [Zach Thomas](https://github.com/ZeeTom).
+Jobly is authored by [Mike Chang](https://github.com/mykeychain) and [Zach Thomas](https://github.com/ZeeTom).
 
 <br>
 
